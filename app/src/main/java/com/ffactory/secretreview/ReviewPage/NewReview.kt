@@ -4,9 +4,12 @@ import android.content.ContentValues.TAG
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import com.ffactory.secretreview.databinding.ActivityNewReviewBinding
 import com.google.firebase.Firebase
 import com.google.firebase.firestore.firestore
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
 
 class NewReview : AppCompatActivity() {
     private lateinit var binding : ActivityNewReviewBinding
@@ -16,21 +19,38 @@ class NewReview : AppCompatActivity() {
         binding =ActivityNewReviewBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        //파이어스토어 테스트구역
+        binding.NewRating.setOnRatingBarChangeListener { ratingBar, rating, fromUser -> binding.NewScore.text = rating.toString() }
+
+        //테스트구역
         binding.NewWritten.setOnClickListener {
-            val user = hashMapOf(
-                "first" to "Ada",
-                "last" to "Lovelace",
-                "born" to 1815
+            val name = binding.NewName.text.toString()
+            val score = binding.NewScore.text.toString()
+            val tags = binding.NewTag.text.toString()
+            val review = binding.NewReview.text.toString()
+            val time : LocalDateTime? = LocalDateTime.now()
+            val formatterTime = DateTimeFormatter.ISO_LOCAL_TIME
+            val formattedTime = time?.format(formatterTime)
+            val formatterDate = DateTimeFormatter.ISO_DATE
+            val formattedDate = time?.format(formatterDate)
+            val testup = hashMapOf(
+                "name" to name,
+                "score" to score,
+                "tags" to tags,
+                "review" to review,
+                "time" to "$formattedDate  /  $formattedTime"
             )
-            db.collection("users")
-                .add(user)
-                .addOnSuccessListener { documentReference ->
-                    Log.d(TAG, "DocumentSnapshot added with ID: ${documentReference.id}")
+            db.collection("post")
+                .add(testup)
+                .addOnSuccessListener { result ->
+                    Toast.makeText(this,"성공",Toast.LENGTH_SHORT).show()
+                }.addOnFailureListener { error ->
+                    Toast.makeText(this,"실패",Toast.LENGTH_SHORT).show()
                 }
-                .addOnFailureListener { e ->
-                    Log.w(TAG, "Error adding document", e)
-                }
+        }
+
+        //취소버튼 누르면 종료
+        binding.NewCancel.setOnClickListener {
+            finish()
         }
     }
 }

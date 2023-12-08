@@ -26,10 +26,10 @@
         android:layout_marginTop="24dp"
         android:layout_marginEnd="24dp"
         android:ems="10"
-        android:inputType="text"
         android:hint="상호명"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NewNoMap" />
 
@@ -68,6 +68,7 @@
 
     <RatingBar
         android:id="@+id/NewRating"
+        style="@android:style/Widget.DeviceDefault.Light.RatingBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -89,7 +90,7 @@
         app:layout_constraintTop_toBottomOf="@+id/NewRating" />
 
     <EditText
-        android:id="@+id/NewTextArea"
+        android:id="@+id/NewReview"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:layout_marginStart="24dp"
@@ -105,5 +106,15 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/NewTag"
         app:layout_constraintVertical_bias="0.0" />
+
+    <TextView
+        android:id="@+id/NewScore"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Score"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/NewRating"
+        app:layout_constraintStart_toEndOf="@+id/NewRating"
+        app:layout_constraintTop_toTopOf="@+id/NewRating" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

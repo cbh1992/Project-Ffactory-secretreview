@@ -1,4 +1,3 @@
 package com.ffactory.secretreview.ReviewPage
 
-data class ItemDataClass(val name : String,val add : String, val tags : String) {
-}
+data class ItemDataClass(var name : String? = null, var add : String? = null, var tags : String? = null)
