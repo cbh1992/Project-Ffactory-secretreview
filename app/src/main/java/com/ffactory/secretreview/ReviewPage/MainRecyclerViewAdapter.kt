@@ -1,6 +1,5 @@
 package com.ffactory.secretreview.ReviewPage
 
-import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
@@ -8,14 +7,16 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.ffactory.secretreview.R
-import com.ffactory.secretreview.ReviewPage.ItemDataClass
-import com.ffactory.secretreview.databinding.ActivityNewReviewBinding
-import com.ffactory.secretreview.databinding.ReviewItemsBinding
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MainRecyclerViewAdapter(val itemList: ArrayList<ItemDataClass>) :
     RecyclerView.Adapter<MainRecyclerViewAdapter.ViewHolder>() {
 
     var review = mutableListOf<ItemDataClass>()
+    var documentID = mutableListOf<String>()
+    val db = Firebase.firestore
+    var intent = Intent()
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.review_items, parent, false)
         return ViewHolder(view)

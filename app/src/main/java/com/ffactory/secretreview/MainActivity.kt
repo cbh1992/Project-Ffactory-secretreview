@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.ffactory.secretreview.OptionPage.OptionPage
 import com.ffactory.secretreview.ReviewPage.ItemDataClass
@@ -11,14 +12,24 @@ import com.ffactory.secretreview.ReviewPage.MainRecyclerViewAdapter
 import com.ffactory.secretreview.ReviewPage.NewReview
 import com.ffactory.secretreview.SearchPage.SearchPage
 import com.ffactory.secretreview.databinding.ActivityMainBinding
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
+    val db = Firebase.firestore
     @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        //DB에서 받아오기
+        db.collection("post")
+            .get()
+            .addOnSuccessListener {
+                Log.d("테스트","test")
+            }
 
         //리사이클러뷰 부분
         //리사이클러뷰 테스트용 더미데이터
