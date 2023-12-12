@@ -24,19 +24,31 @@ class NewReview : AppCompatActivity() {
         //테스트구역
         binding.NewWritten.setOnClickListener {
             val name = binding.NewName.text.toString()
-            val score = binding.NewScore.text.toString()
+            var score = binding.NewScore.text.toString()
+            if(score == "Score"){
+                score = "0.0"
+            }
             val tags = binding.NewTag.text.toString()
             val review = binding.NewReview.text.toString()
+            var location: String? = null
+            if(binding.NewNoMap.isChecked) {
+            location = "null"
+        } else{
+            location = "Location"
+        }
             val time : LocalDateTime? = LocalDateTime.now()
             val formatterTime = DateTimeFormatter.ISO_LOCAL_TIME
             val formattedTime = time?.format(formatterTime)
             val formatterDate = DateTimeFormatter.ISO_DATE
             val formattedDate = time?.format(formatterDate)
+
+
             val testup = hashMapOf(
                 "name" to name,
                 "score" to score,
                 "tags" to tags,
                 "review" to review,
+                "location" to location,
                 "time" to "$formattedDate  /  $formattedTime"
             )
             db.collection("post")
