@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.ffactory.secretreview.OptionPage.OptionPage
 import com.ffactory.secretreview.ReviewPage.ItemDataClass
 import com.ffactory.secretreview.ReviewPage.NewReview
+import com.ffactory.secretreview.ReviewPage.ReviewDetail
 import com.ffactory.secretreview.SearchPage.SearchPage
 import com.ffactory.secretreview.databinding.ActivityMainBinding
 import com.google.firebase.firestore.FirebaseFirestore
@@ -79,12 +80,28 @@ inner class MainRecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHold
         viewHolder.findViewById<TextView>(R.id.ItemName).text = items[position].name
         viewHolder.findViewById<TextView>(R.id.ItemTag).text = items[position].tags
         viewHolder.findViewById<TextView>(R.id.ItemLocation).text = items[position].location
+        viewHolder.findViewById<TextView>(R.id.ItemScore).text = items[position].score
+        viewHolder.findViewById<TextView>(R.id.ItemText).text = items[position].text
         }
 
-    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val detailName : TextView = itemView.findViewById(R.id.ItemName)
-        val detailTag : TextView = itemView.findViewById(R.id.ItemTag)
-        val detailLocation : TextView = itemView.findViewById(R.id.ItemLocation)
+    inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        init {
+            itemView.setOnClickListener {
+                binding
+                val detailName : TextView = itemView.findViewById(R.id.ItemName)
+                val detailTag : TextView = itemView.findViewById(R.id.ItemTag)
+                val detailLocation : TextView = itemView.findViewById(R.id.ItemLocation)
+                val detailScore : TextView = itemView.findViewById(R.id.ItemScore)
+                val detailText : TextView = itemView.findViewById(R.id.ItemText)
+                val tossToDetail = Intent(this@MainActivity,ReviewDetail::class.java)
+                tossToDetail.putExtra("name", detailName.text.toString())
+                tossToDetail.putExtra("tag", detailTag.text.toString())
+                tossToDetail.putExtra("Location", detailLocation.text.toString())
+                tossToDetail.putExtra("Score", detailScore.text.toString())
+                tossToDetail.putExtra("Text", detailText.text.toString())
+                startActivity(tossToDetail)
+            }
+        }
         }
     override fun getItemCount(): Int {
         return items.size

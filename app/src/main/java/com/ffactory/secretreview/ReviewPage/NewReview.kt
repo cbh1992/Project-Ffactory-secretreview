@@ -29,7 +29,7 @@ class NewReview : AppCompatActivity() {
                 score = "0.0"
             }
             val tags = binding.NewTag.text.toString()
-            val review = binding.NewReview.text.toString()
+            val text = binding.NewReview.text.toString()
             var add: String? = null
             if(binding.NewNoMap.isChecked) {
             add = "null"
@@ -47,7 +47,7 @@ class NewReview : AppCompatActivity() {
                 "name" to name,
                 "score" to score,
                 "tags" to tags,
-                "review" to review,
+                "text" to text,
                 "location" to add,
                 "time" to "$formattedDate  /  $formattedTime"
             )

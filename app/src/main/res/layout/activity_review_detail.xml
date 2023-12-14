@@ -37,7 +37,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <RatingBar
-        android:id="@+id/DetailRating"
+        android:id="@+id/DetailScore"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -53,7 +53,7 @@
         android:text="Tags"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/DetailRating" />
+        app:layout_constraintTop_toBottomOf="@+id/DetailScore" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/DetailReviewArea"
@@ -69,10 +69,23 @@
         app:layout_constraintTop_toBottomOf="@+id/DetailTags">
 
         <TextView
+            android:id="@+id/DetailLocation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="주소"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
             android:id="@+id/DetailReview"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:text="TextView" />
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:text="리뷰"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/DetailLocation" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <LinearLayout
