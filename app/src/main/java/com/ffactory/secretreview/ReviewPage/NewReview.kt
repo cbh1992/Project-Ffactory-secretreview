@@ -30,11 +30,11 @@ class NewReview : AppCompatActivity() {
             }
             val tags = binding.NewTag.text.toString()
             val review = binding.NewReview.text.toString()
-            var location: String? = null
+            var add: String? = null
             if(binding.NewNoMap.isChecked) {
-            location = "null"
+            add = "null"
         } else{
-            location = "Location"
+            add = "Location"
         }
             val time : LocalDateTime? = LocalDateTime.now()
             val formatterTime = DateTimeFormatter.ISO_LOCAL_TIME
@@ -48,7 +48,7 @@ class NewReview : AppCompatActivity() {
                 "score" to score,
                 "tags" to tags,
                 "review" to review,
-                "location" to location,
+                "location" to add,
                 "time" to "$formattedDate  /  $formattedTime"
             )
             db.collection("post")
