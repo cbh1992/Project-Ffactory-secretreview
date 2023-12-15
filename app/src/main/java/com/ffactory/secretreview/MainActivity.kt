@@ -23,7 +23,7 @@ import com.google.firebase.ktx.Firebase
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding : ActivityMainBinding
-    private var idItems = mutableListOf<String>()
+    private var documentID = mutableListOf<String>()
     private var loadItems = mutableListOf<ItemDataClass>()
     //private lateinit var adapter: MainRecyclerViewAdapter
     var firestore : FirebaseFirestore? = null
@@ -88,6 +88,7 @@ inner class MainRecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHold
         init {
             itemView.setOnClickListener {
                 binding
+                //val pathInt : Int = adapterPosition.takeIf { it != RecyclerView.NO_POSITION } ?: return@setOnClickListener
                 val detailName : TextView = itemView.findViewById(R.id.ItemName)
                 val detailTag : TextView = itemView.findViewById(R.id.ItemTag)
                 val detailLocation : TextView = itemView.findViewById(R.id.ItemLocation)
@@ -99,9 +100,10 @@ inner class MainRecyclerViewAdapter : RecyclerView.Adapter<RecyclerView.ViewHold
                 tossToDetail.putExtra("Location", detailLocation.text.toString())
                 tossToDetail.putExtra("Score", detailScore.text.toString())
                 tossToDetail.putExtra("Text", detailText.text.toString())
+                //tossToDetail.putExtra("UID",documentID[pathInt])
                 startActivity(tossToDetail)
+                }
             }
-        }
         }
     override fun getItemCount(): Int {
         return items.size
